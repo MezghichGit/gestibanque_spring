@@ -6,7 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -20,19 +22,24 @@ public class BanqueController {
 	@Autowired  // iOC(inversion of control) = Injection de dépendances
 	BanqueRepository banqueRepository;
 	
-	@RequestMapping("/save")
-	@ResponseBody
-	public String saveBanque()
+	
+	@GetMapping("/save")
+	public String getFormAddBanque(Model model)
 	{
-		// Objet banque en dur
-		Banque banque =  new Banque();
-		banque.setNom("Nikel");
-		banque.setCapital(200000);
-		banque.setAdresse("Bordeaux");
-		
-		// insertion dans la base de données de l'objet banque
-		Banque res = banqueRepository.save(banque);  // save : insert
-		return res.toString();
+		//Banque banque = new Banque("abc","paris",12000);
+		Banque banque = new Banque();
+		model.addAttribute("banque", banque);
+		return "banque/addBanque";
+	}
+	
+	
+	@PostMapping("/save")
+	//@ResponseBody
+	public String saveBanque(Banque banque)
+	{
+		banqueRepository.save(banque);  // save : insert
+		//return res.toString();
+		return "redirect:list";
 	}
 	
 	@RequestMapping("/list")
@@ -45,34 +52,36 @@ public class BanqueController {
 		return "banque/listBanque";
 	}
 	
-	@RequestMapping("/delete/{id}")
-	@ResponseBody
+	@GetMapping("/delete/{id}")
+	//@ResponseBody
 	public String deleteBanque(@PathVariable("id") int id)
 	{
 		banqueRepository.deleteById(id);  // delete
-		List<Banque> banques = (List<Banque>) banqueRepository.findAll(); 
-		return banques.toString();
+		//List<Banque> banques = (List<Banque>) banqueRepository.findAll(); 
+		//return banques.toString();
+		return "redirect:../list";
 	}
 	
-	@RequestMapping("/update/{id}")
-	@ResponseBody
-	public String updateBanque(@PathVariable("id") int id)
+	
+	@GetMapping("/update/{id}")
+	public String getFormUpdateBanque(@PathVariable("id") int id, Model model)
 	{
-		//Banque banque =  new Banque();
-		Optional<Banque> op_banque = banqueRepository.findById(id);
-		Banque banque = op_banque.get();
+		Optional<Banque> opBanque = banqueRepository.findById(id);
+		Banque banque = opBanque.get(); //banque qui est remplis depuis la base
 		
+		model.addAttribute("banque", banque);
 		
-		banque.setNom("Nikel France");
-		banque.setCapital(600000);
-		banque.setAdresse("Bordeaux France");
-		banque.setId(id);
-		
-		// insertion dans la base de données de l'objet banque
-		Banque res = banqueRepository.save(banque);  // save : update
-		return res.toString();
+		return "banque/updateBanque";
 	}
 	
+	
+	@PostMapping("/update")
+	//@ResponseBody
+	public String updateBanque(Banque banque)
+	{
+		banqueRepository.save(banque);  // save : insert
+		return "redirect:list";
+	}
 	
 
 }

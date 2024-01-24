@@ -25,6 +25,12 @@ public class Banque {
 		this.adresse = adresse;
 		this.capital = capital;
 	}
+	
+	public Banque(String nom, String adresse, double capital) {
+		this.nom = nom;
+		this.adresse = adresse;
+		this.capital = capital;
+	}
 
 	public int getId() {
 		return id;

@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,11 +36,13 @@ public class BanqueController {
 	}
 	
 	@RequestMapping("/list")
-	@ResponseBody
-	public String getAllBanques()
+	//@ResponseBody
+	public String getAllBanques(Model model)
 	{
 		List<Banque> banques = (List<Banque>) banqueRepository.findAll();  // select *
-		return banques.toString();
+		model.addAttribute("banques", banques);
+		//return banques.toString();
+		return "banque/listBanque";
 	}
 	
 	@RequestMapping("/delete/{id}")

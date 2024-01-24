@@ -5,11 +5,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
+
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.sip.gestibanque.entities.Banque;
 import com.sip.gestibanque.entities.Message;
 import com.sip.gestibanque.repositories.MessageRepository;
 
@@ -41,6 +41,15 @@ public class MessageController {
 	public String getAllMessages()
 	{
 		List<Message> messages = (List<Message>) messageRepository.findAll();  // select *
+		return messages.toString();
+	}
+	
+	@RequestMapping("/delete/{id}")
+	@ResponseBody
+	public String deleteMessage(@PathVariable("id") int id)
+	{
+		messageRepository.deleteById(id);  // delete
+		List<Message> messages = (List<Message>) messageRepository.findAll(); 
 		return messages.toString();
 	}
 

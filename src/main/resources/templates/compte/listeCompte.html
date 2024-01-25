@@ -29,8 +29,8 @@ Pour ajouter une nouvelle compte clique ici : <a class="btn btn-primary" th:href
 		<td th:text="${compte.proprietaire}"></td>
 		<td th:text="${compte.dateCreation}"></td>
 		<td th:text="${compte.typeCompte}"></td>
-		<td><a th:href="@{/compte/delete/{id}(id=${compte.id})}" class="btn btn-danger">Supprimer</a></td>
-		<td><a th:href="@{/compte/update/{id}(id=${compte.id})}" class="btn btn-warning">Modifier</a></td>
+		<td><a th:href="@{/comptes/delete/{id}(id=${compte.id})}" class="btn btn-danger">Supprimer</a></td>
+		<td><a th:href="@{/comptes/update/{id}(id=${compte.id})}" class="btn btn-warning">Modifier</a></td>
 	</tr>
 
 </table> 

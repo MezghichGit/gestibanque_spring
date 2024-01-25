@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -40,6 +41,16 @@ public class CBController {
 		List<CompteBancaire> comptes = (List<CompteBancaire>) compteRepository.findAll();  // select *
 		model.addAttribute("comptes", comptes);
 		return "compte/listeCompte";
+	}
+	
+	@GetMapping("/delete/{id}")
+	//@ResponseBody
+	public String deleteCompte(@PathVariable("id") int id)
+	{
+		compteRepository.deleteById(id);  // delete
+		//List<Banque> banques = (List<Banque>) banqueRepository.findAll(); 
+		//return banques.toString();
+		return "redirect:../list";
 	}
 	
 	

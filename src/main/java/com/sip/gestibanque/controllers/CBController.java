@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sip.gestibanque.entities.Banque;
@@ -72,6 +73,15 @@ public class CBController {
 	{
 		compteRepository.save(compte);  // save : insert
 		return "redirect:list";
+	}
+	
+	@RequestMapping("/search")
+//	@ResponseBody
+	public String searchForm(Model model,
+			@RequestParam("proprietaire")String proprietaire) {
+		List<CompteBancaire> comptes = compteRepository.findByProprietaire(proprietaire);
+		model.addAttribute("comptes", comptes);
+		return "compte/searchResult";
 	}
 	
 }

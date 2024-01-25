@@ -79,6 +79,7 @@ public class CBController {
 //	@ResponseBody
 	public String searchForm(Model model,
 			@RequestParam("proprietaire")String proprietaire) {
+		//ttest
 		List<CompteBancaire> comptes = compteRepository.findByProprietaire(proprietaire);
 		model.addAttribute("comptes", comptes);
 		return "compte/searchResult";

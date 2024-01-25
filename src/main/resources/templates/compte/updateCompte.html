@@ -13,13 +13,13 @@
 Pour consulter la liste des banques : <a class="btn btn-primary" th:href="@{/banques/list}">Liste Banques</a>
 <br />
 <br />
-<h3 align="center" style="background-color: brown;">Ajouter une nouvelle banque</h3>
+<h3 align="center" style="background-color: brown;">Modifier une nouvelle banque</h3>
 
 <div style="width: 50%; margin-left: 20%;">
-	<form method="post" th:action="@{/comptes/save}" th:object="${cb}">
+	<form method="post" th:action="@{/comptes/save}" th:object="${compte}">
 		<label for="nb">Nom proprietaire</label> <input id="nb" type="text" th:field="*{proprietaire}" class="form-control" required />
 		<br />
-		<label for="cb">Date creation</label> <input id="cb" type="date" th:field="*{dateCreation}" class="form-control" required />
+		<label for="cb">Date creation</label> <input id="cb" type="date" th:field="*{dateCreation}" class="form-control" required/>
 		<br />
 		<label for="ab">Type de compte</label> 
 		<select id="ab" th:field="*{typeCompte}" class="form-control" required>

@@ -1,6 +1,7 @@
 package com.sip.gestibanque.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,5 +54,24 @@ public class CBController {
 		return "redirect:../list";
 	}
 	
+	@GetMapping("/update/{id}")
+	public String getFormUpdateCompte(@PathVariable("id") int id, Model model)
+	{
+		Optional<CompteBancaire> opCompte = compteRepository.findById(id);
+		CompteBancaire compte = opCompte.get(); //banque qui est remplis depuis la base
+		
+		model.addAttribute("compte", compte);
+		
+		return "compte/updateCompte";
+	}
+	
+	
+	@PostMapping("/update")
+	//@ResponseBody
+	public String updateCompte(CompteBancaire compte)
+	{
+		compteRepository.save(compte);  // save : insert
+		return "redirect:list";
+	}
 	
 }

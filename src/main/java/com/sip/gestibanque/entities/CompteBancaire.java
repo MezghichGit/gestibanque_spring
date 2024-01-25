@@ -30,6 +30,59 @@ public class CompteBancaire {
 		this.idBanque = idBanque;
 	}
 	
+	public CompteBancaire() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getProprietaire() {
+		return proprietaire;
+	}
+
+	public void setProprietaire(String proprietaire) {
+		this.proprietaire = proprietaire;
+	}
+
+	public LocalDate getDateCreation() {
+		return dateCreation;
+	}
+
+	public void setDateCreation(LocalDate dateCreation) {
+		this.dateCreation = dateCreation;
+	}
+
+	public String getTypeCompte() {
+		return typeCompte;
+	}
+
+	public void setTypeCompte(String typeCompte) {
+		this.typeCompte = typeCompte;
+	}
+
+	public double getSolde() {
+		return solde;
+	}
+
+	public void setSolde(double solde) {
+		this.solde = solde;
+	}
+
+	public int getIdBanque() {
+		return idBanque;
+	}
+
+	public void setIdBanque(int idBanque) {
+		this.idBanque = idBanque;
+	}
+	
 	
 	
 	

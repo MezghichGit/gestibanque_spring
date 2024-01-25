@@ -10,29 +10,29 @@
 <h1 align="center">Les banque de GK, Cursus Java, Promo 2024</h1>
 
 
-Pour ajouter une nouvelle banque clique ici : <a class="btn btn-primary" th:href="@{/banques/save}">Ajouter Banque</a>
+Pour ajouter une nouvelle compte clique ici : <a class="btn btn-primary" th:href="@{/comptes/save}">Ajouter compte</a>
 <br />
 <br />
 <h3 align="center" style="background-color: brown;">Liste des comptes bancaires</h3>
-<!--
+
 <table border="4" align="center" class="table table-dark">
 	<tr>
-		<th>ID Banque</th>
-		<th>Nom Banque</th>
-		<th>Capital Banque</th>
-		<th>Adresse Banque</th>
+		<th>ID compte</th>
+		<th>Nom Proprietaire</th>
+		<th>Date creation</th>
+		<th>Compte type</th>
 		<th>Supprimer</th>
 		<th>Modifier</th>
 	</tr>
-	<tr th:each="banque:${banques}">
-		<td th:text="${banque.id}"></td>
-		<td th:text="${banque.nom}"></td>
-		<td th:text="${banque.capital}"></td>
-		<td th:text="${banque.adresse}"></td>
-		<td><a th:href="@{/banques/delete/{id}(id=${banque.id})}" class="btn btn-danger">Supprimer</a></td>
-		<td><a th:href="@{/banques/update/{id}(id=${banque.id})}" class="btn btn-warning">Modifier</a></td>
+	<tr th:each="compte:${comptes}">
+		<td th:text="${compte.id}"></td>
+		<td th:text="${compte.proprietaire}"></td>
+		<td th:text="${compte.dateCreation}"></td>
+		<td th:text="${compte.typeCompte}"></td>
+		<td><a th:href="@{/compte/delete/{id}(id=${compte.id})}" class="btn btn-danger">Supprimer</a></td>
+		<td><a th:href="@{/compte/update/{id}(id=${compte.id})}" class="btn btn-warning">Modifier</a></td>
 	</tr>
 
-</table> -->
+</table> 
 </body>
 </html>

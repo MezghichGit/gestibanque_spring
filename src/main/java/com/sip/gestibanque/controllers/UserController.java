@@ -30,7 +30,7 @@ public class UserController {
 		
 		User user = new User();
 		model.addAttribute("user", user);
-		return "user/adduser";
+		return "user/addUser";
 	}
 	
 	@PostMapping("/save")
@@ -49,7 +49,7 @@ public class UserController {
 		List<User> users = (List<User>) userRepository.findAll();  
 		model.addAttribute("users", users);
 		
-		return "user/listuser";
+		return "user/listUser";
 	}
 	
 	@GetMapping("/delete/{id}")

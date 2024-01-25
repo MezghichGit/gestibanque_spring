@@ -1,5 +1,6 @@
 package com.sip.gestibanque.controllers;
 
+
 import java.util.List;
 import java.util.Optional;
 
@@ -10,18 +11,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sip.gestibanque.entities.Banque;
+
 import com.sip.gestibanque.entities.CompteBancaire;
 import com.sip.gestibanque.repositories.CompteRepository;
-import com.sip.gestibanque.repositories.MessageRepository;
 
 @Controller
 @RequestMapping("/comptes")
 public class CBController {
-	@Autowired  // iOC(inversion of control) = Injection de dépendances
+	@Autowired  
 	CompteRepository compteRepository;
 	
 	@RequestMapping("/save")
@@ -32,6 +34,7 @@ public class CBController {
 		return "compte/compteForm";
 	}
 	
+
 	@PostMapping("/save")
 	public String saveCompte(CompteBancaire cb) {
 		compteRepository.save(cb);
@@ -49,9 +52,8 @@ public class CBController {
 	//@ResponseBody
 	public String deleteCompte(@PathVariable("id") int id)
 	{
-		compteRepository.deleteById(id);  // delete
-		//List<Banque> banques = (List<Banque>) banqueRepository.findAll(); 
-		//return banques.toString();
+		compteRepository.deleteById(id);  
+		
 		return "redirect:../list";
 	}
 	
@@ -59,7 +61,7 @@ public class CBController {
 	public String getFormUpdateCompte(@PathVariable("id") int id, Model model)
 	{
 		Optional<CompteBancaire> opCompte = compteRepository.findById(id);
-		CompteBancaire compte = opCompte.get(); //banque qui est remplis depuis la base
+		CompteBancaire compte = opCompte.get(); 
 		
 		model.addAttribute("compte", compte);
 		
@@ -71,15 +73,17 @@ public class CBController {
 	//@ResponseBody
 	public String updateCompte(CompteBancaire compte)
 	{
-		compteRepository.save(compte);  // save : insert
+		compteRepository.save(compte);  
 		return "redirect:list";
 	}
+
+
 	
 	@RequestMapping("/search")
 //	@ResponseBody
 	public String searchForm(Model model,
 			@RequestParam("proprietaire")String proprietaire) {
-		//ttest
+	
 		List<CompteBancaire> comptes = compteRepository.findByProprietaire(proprietaire);
 		model.addAttribute("comptes", comptes);
 		return "compte/searchResult";

@@ -16,6 +16,7 @@ Pour consulter la liste des banques : <a class="btn btn-primary" th:href="@{/ban
 <h3 align="center" style="background-color: brown;">Ajouter une nouvelle banque</h3>
 
 <div style="width: 50%; margin-left: 20%;">
+
 	<form method="post" th:action="@{/comptes/save}" th:object="${cb}">
 		<label for="nb">Nom proprietaire</label> <input id="nb" type="text" th:field="*{proprietaire}" class="form-control" required />
 		<br />
@@ -23,14 +24,29 @@ Pour consulter la liste des banques : <a class="btn btn-primary" th:href="@{/ban
 		<br />
 		<label for="ab">Type de compte</label> 
 		<select id="ab" th:field="*{typeCompte}" class="form-control" required>
+
+	<form method="post" th:action="@{/banques/save}" th:object="${cb}">
+		<label for="nb">Nom proprietaire</label> <input id="nb" type="text" th:field="*{proprietaire}" class="form-control" />
+		<br />
+		<label for="cb">Date creation</label> <input id="cb" type="date" th:field="*{dateCreation}" class="form-control" />
+		<br />
+		<label for="ab">Type de compte</label> 
+		<select id="ab" th:field="*{typeCompte}" class="form-control">
+
 			<option value="Epargne">Epargne</option>
 			<option value="Courant">Courant</option>
 		</select>
 		<br />
 		<br />
+
 		<label for="ab">Solde de compte</label> <input id="ab" type="number" th:field="*{solde}" class="form-control" required />
 		<br />
 		<label for="ab">Banque id</label> <input id="ab" type="number" th:field="*{idBanque}" class="form-control" required />
+
+		<label for="ab">Adresse Banque</label> <input id="ab" type="number" th:field="*{solde}" class="form-control" />
+		<br />
+		<label for="ab">Adresse Banque</label> <input id="ab" type="number" th:field="*{idBanque}" class="form-control" />
+
 		<br />
 		
 		<input type="submit" value="Ajouter" class="btn btn-primary"/>

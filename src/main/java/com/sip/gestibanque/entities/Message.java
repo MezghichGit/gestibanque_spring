@@ -9,8 +9,9 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Message {
-	@Id // clé primaire et unique
-	@GeneratedValue(strategy = GenerationType.AUTO) // Hibernate qui va générer l'id automatiquement avant l'insertion
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String sujet;
 	private String description;

@@ -13,11 +13,10 @@
 		Bancaires</a>
 	<br />
 	<br />
-	<h3 align="center" style="background-color: rgb(0, 255, 128);">Modifier Compte</h3>
+	<h3 align="center" style="background-color: rgb(0, 255, 128);">Nouveau Compte</h3>
 
 	<div style="width: 50%; margin-left: 20%;">
-		<form method="post" th:action="@{/comptes/save}" th:object="${compte}">
-			<input type="hidden" th:field="*{id}" />
+		<form method="post" th:action="@{/comptes/save}" th:object="${cb}">
 			<label for="pp">Proprietaire</label> <input id="pp" type="text" th:field="*{proprietaire}"
 				class="form-control" required />
 			<br />
@@ -38,7 +37,7 @@
 				required />
 			<br />
 
-			<input type="submit" value="Mettre à jour" class="btn btn-primary" />
+			<input type="submit" value="Ajouter" class="btn btn-primary" />
 		</form>
 	</div>
 </body>

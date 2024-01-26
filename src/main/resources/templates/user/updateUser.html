@@ -7,31 +7,32 @@
 </head>
 
 <body style="margin: 0.5%;">
-<h1 align="center">Les Utilisateurs</h1>
+	<h1 align="center">Les Utilisateurs</h1>
 
+	Pour consulter la liste des utilisateurs : <a class="btn btn-primary" th:href="@{/users/list}">Liste
+		utilisateurs</a>
+	<br />
+	<br />
+	<h3 align="center" style="background-color: rgb(0, 255, 128);">Modifier Utilisateur</h3>
 
-Pour consulter la liste des utilisateurs : <a class="btn btn-primary" th:href="@{/users/list}">Liste utilisateurs</a>
-<br />
-<br />
-<h3 align="center" style="background-color: rgb(0, 255, 128);">Mise à jour d'un utilisateur</h3>
-
-<div style="width: 50%; margin-left: 20%;">
-	<form method="post" th:action="@{/users/save}" th:object="${user}">
-		<input type="hidden" th:field="*{id}"/>
-		<label for="nu">Nom</label> <input id="nu" type="text" th:field="*{nom}" class="form-control" />
-		<br />
-		<label for="pu">prenom</label> <input id="pu" type="text" th:field="*{prenom}" class="form-control" />
-		<br />
-		<label for="au">Age</label> <input id="au" type="number" th:field="*{age}" class="form-control" />
-		<br />
-		<label for="eu">Email</label> <input id="eu" type="text" th:field="*{email}" class="form-control" />
-		<br />
-		<label for="ad">Adresse</label> <input id="ad" type="text" th:field="*{adresse}" class="form-control" />
-		<br />
-		<label for="tu">Telephone</label> <input id="tu" type="text" th:field="*{telephone}" class="form-control" />
-		<br />
-		<input type="submit" value="Mettre à jour" class="btn btn-primary"/>
-	</form>
-</div>
+	<div style="width: 50%; margin-left: 20%;">
+		<form method="post" th:action="@{/users/save}" th:object="${user}">
+			<input type="hidden" th:field="*{id}" />
+			<label for="nu">Nom</label> <input id="nu" type="text" th:field="*{nom}" class="form-control" />
+			<br />
+			<label for="pu">prenom</label> <input id="pu" type="text" th:field="*{prenom}" class="form-control" />
+			<br />
+			<label for="au">Age</label> <input id="au" type="number" th:field="*{age}" class="form-control" />
+			<br />
+			<label for="eu">Email</label> <input id="eu" type="text" th:field="*{email}" class="form-control" />
+			<br />
+			<label for="ad">Adresse</label> <input id="ad" type="text" th:field="*{adresse}" class="form-control" />
+			<br />
+			<label for="tu">Telephone</label> <input id="tu" type="text" th:field="*{telephone}" class="form-control" />
+			<br />
+			<input type="submit" value="Mettre à jour" class="btn btn-primary" />
+		</form>
+	</div>
 </body>
+
 </html>

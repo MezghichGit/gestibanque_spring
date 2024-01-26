@@ -5,79 +5,75 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
 import com.sip.gestibanque.entities.User;
 import com.sip.gestibanque.repositories.UserRepository;
-
-
 
 @Controller
 @RequestMapping("/users")
 public class UserController {
-	
-	
+
 	@Autowired
 	UserRepository userRepository;
-	
-	
+
 	@GetMapping("/save")
-	public String getFormAddUser(Model model)
-	{
-		
+	public String getFormAddUser(Model model) {
 		User user = new User();
 		model.addAttribute("user", user);
-		return "user/adduser";
+
+		return "user/addUser";
 	}
-	
+
 	@PostMapping("/save")
-	//@ResponseBody
-	public String saveUser(User user)
-	{
-		userRepository.save(user);  
-		
+	public String saveUser(User user) {
+		userRepository.save(user);
+
 		return "redirect:list";
 	}
-	
+
 	@RequestMapping("/list")
-	//@ResponseBody
-	public String getUsers(Model model)
-	{
-		List<User> users = (List<User>) userRepository.findAll();  
+	public String getUsers(Model model) {
+		List<User> users = (List<User>) userRepository.findAll();
 		model.addAttribute("users", users);
-		
-		return "user/listuser";
+
+		return "user/listUser";
 	}
-	
+
 	@GetMapping("/delete/{id}")
-	//@ResponseBody
-	public String deleteUser(@PathVariable("id") int id)
-	{
+	public String deleteUser(@PathVariable("id") int id) {
 		userRepository.deleteById(id);
+
 		return "redirect:../list";
 	}
-	
+
 	@GetMapping("/update/{id}")
-	public String getFormUpdateUser(@PathVariable("id") int id, Model model)
-	{
+	public String getFormUpdateUser(@PathVariable("id") int id, Model model) {
 		Optional<User> opUser = userRepository.findById(id);
-		User user = opUser.get(); 
-		
+		User user = opUser.get();
 		model.addAttribute("user", user);
-		
+
 		return "user/updateUser";
 	}
-	
+
 	@PostMapping("/update")
-	//@ResponseBody
-	public String updateBanque(User user)
-	{
-		userRepository.save(user); 
+	// @ResponseBody
+	public String updateBanque(User user) {
+		userRepository.save(user);
+
 		return "redirect:list";
 	}
 	
+	@PostMapping("/search")
+	public String getFormSearchUser(Model model, @RequestParam(value = "nom") String nom) {
+
+		List<User> users  = userRepository.findByNom(nom);
+		model.addAttribute("users", users);
+//		model.addAttribute("nom", nom);
+
+		return "user/listUser";
+//		return "redirect:list";
+	}
 
 }

@@ -5,32 +5,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity // on veut que hibernate nous crée une table
+@Entity // On veut que Hibernate nous crée une table
 public class Banque {
-	
-	@Id  // clé primaire
-	@GeneratedValue(strategy = GenerationType.AUTO)  // la clé primaire est auto-increment
+
+	@Id // clé primaire et unique
+	@GeneratedValue(strategy = GenerationType.AUTO) // Hibernate qui va générer l'id automatiquement avant l'insertion
 	private int id;
-	
 	private String nom;
-	
 	private String adresse;
-	
 	private double capital;
-	
-	public Banque(int id, String nom, String adresse, double capital) {
-		super();
-		this.id = id;
-		this.nom = nom;
-		this.adresse = adresse;
-		this.capital = capital;
-	}
-	
-	public Banque(String nom, String adresse, double capital) {
-		this.nom = nom;
-		this.adresse = adresse;
-		this.capital = capital;
-	}
 
 	public int getId() {
 		return id;
@@ -69,7 +52,16 @@ public class Banque {
 		return "Banque [id=" + id + ", nom=" + nom + ", adresse=" + adresse + ", capital=" + capital + "]";
 	}
 
-	public Banque()
-	{}
+	public Banque(int id, String nom, String adresse, double capital) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.adresse = adresse;
+		this.capital = capital;
+	}
+
+	public Banque() {
+
+	}
 
 }

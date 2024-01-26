@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 
 @Entity
 public class CompteBancaire {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
@@ -18,22 +18,6 @@ public class CompteBancaire {
 	private String typeCompte; // Epargne | Courant
 	private double solde;
 	private int idBanque;
-	
-	public CompteBancaire(int id, String proprietaire, LocalDate dateCreation, String typeCompte, double solde,
-			int idBanque) {
-		super();
-		this.id = id;
-		this.proprietaire = proprietaire;
-		this.dateCreation = dateCreation;
-		this.typeCompte = typeCompte;
-		this.solde = solde;
-		this.idBanque = idBanque;
-	}
-	
-	public CompteBancaire() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
 	public int getId() {
 		return id;
@@ -82,8 +66,26 @@ public class CompteBancaire {
 	public void setIdBanque(int idBanque) {
 		this.idBanque = idBanque;
 	}
-	
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "CompteBancaire [id=" + id + ", proprietaire=" + proprietaire + ", dateCreation=" + dateCreation
+				+ ", typeCompte=" + typeCompte + ", solde=" + solde + ", idBanque=" + idBanque + "]";
+	}
+
+	public CompteBancaire(int id, String proprietaire, LocalDate dateCreation, String typeCompte, double solde,
+			int idBanque) {
+		super();
+		this.id = id;
+		this.proprietaire = proprietaire;
+		this.dateCreation = dateCreation;
+		this.typeCompte = typeCompte;
+		this.solde = solde;
+		this.idBanque = idBanque;
+	}
+
+	public CompteBancaire() {
+
+	}
+
 }

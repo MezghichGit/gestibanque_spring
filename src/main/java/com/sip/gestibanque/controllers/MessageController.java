@@ -70,7 +70,6 @@ public class MessageController {
 
 		List<Message> messages = messageRepository.findByDateMessage(dateMessage);
 		model.addAttribute("messages", messages);
-//		model.addAttribute("dateMessage", dateMessage);
 
 		return "message/listMessage";
 //		return "redirect:list";

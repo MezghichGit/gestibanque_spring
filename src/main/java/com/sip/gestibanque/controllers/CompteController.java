@@ -68,7 +68,6 @@ public class CompteController {
 
 		List<CompteBancaire> cbs = compteRepository.findByProprietaire(proprietaire);
 		model.addAttribute("comptes", cbs);
-//		model.addAttribute("proprietaire", proprietaire);
 
 		return "compte/listCompte";
 //		return "redirect:list";

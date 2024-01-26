@@ -7,8 +7,12 @@
 </head>
 
 <body style="margin: 0.5%;">
-	<h1 align="center">Les Messages</h1>
+	<div th:replace="fragment/header::header" />
+	<div th:replace="fragment/navbar::navbar" />
+	<br />
+	<br />
 
+	<h1 align="center">Les Messages</h1>
 	<br />
 
 	<!-- <div th:replace="fragment/rscbox::rscbox" /> -->
@@ -52,6 +56,9 @@
 		</tr>
 
 	</table>
+
+	<div th:replace="fragment/footer::footer" />
+
 </body>
 
 </html>

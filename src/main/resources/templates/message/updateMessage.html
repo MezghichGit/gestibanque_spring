@@ -7,12 +7,18 @@
 </head>
 
 <body style="margin: 0.5%;">
+	<div th:replace="fragment/header::header" />
+	<div th:replace="fragment/navbar::navbar" />
+	<br />
+	<br />
+
 	<h1 align="center">Les Messages</h1>
+	<br />
 
 	Pour consulter la liste des messages : <a class="btn btn-primary" th:href="@{/messages/list}">Messagerie</a>
 	<br />
 	<br />
-	<h3 align="center" style="background-color: rgb(0, 255, 128);">Rédiger Message</h3>
+	<h3 align="center" style="background-color: rgb(0, 255, 128);">Modifier un message</h3>
 
 	<div style="width: 50%; margin-left: 20%;">
 		<form method="post" th:action="@{/messages/save}" th:object="${message}">
@@ -30,6 +36,9 @@
 			<input type="submit" value="Mettre à jour" class="btn btn-primary" />
 		</form>
 	</div>
+
+	<div th:replace="fragment/footer::footer" />
+	
 </body>
 
 </html>

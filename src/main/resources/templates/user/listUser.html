@@ -7,8 +7,12 @@
 </head>
 
 <body style="margin: 0.5%;">
-	<h1 align="center">Les Utilisateurs</h1>
+	<div th:replace="fragment/header::header" />
+	<div th:replace="fragment/navbar::navbar" />
+	<br />
+	<br />
 
+	<h1 align="center">Les Utilisateurs</h1>
 	<br />
 
 	<!-- <div th:replace="fragment/rscbox::rscbox" /> -->
@@ -16,7 +20,7 @@
 		<form class="row" method="post" th:action="@{/users/search}">
 			<div class="col">
 				<label for="si" class="visually-hidden"></label>
-				<input type="text" class="form-control" id="si" th:name="nom"
+				<input type="text" class="form-control" id="si" th:name="inputname"
 					placeholder="Saisissez le nom ou le prénom d'un utilisateur">
 			</div>
 			<div class="col-auto">
@@ -54,6 +58,9 @@
 		</tr>
 
 	</table>
+
+	<div th:replace="fragment/footer::footer" />
+	
 </body>
 
 </html>

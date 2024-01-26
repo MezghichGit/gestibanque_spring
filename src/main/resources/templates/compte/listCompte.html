@@ -7,8 +7,12 @@
 </head>
 
 <body style="margin: 0.5%;">
+	<div th:replace="fragment/header::header" />
+	<div th:replace="fragment/navbar::navbar" />
+	<br />
+	<br />
+	
 	<h1 align="center">Les Comptes Bancaires</h1>
-
 	<br />
 
 	<!-- <div th:replace="fragment/rscbox::rscbox" /> -->
@@ -17,7 +21,7 @@
 			<div class="col">
 				<label for="si" class="visually-hidden"></label>
 				<input type="text" class="form-control" id="si" th:name="proprietaire"
-					placeholder="Saisissez le nom de proprietaire">
+					placeholder="Saisissez le nom d'un proprietaire">
 			</div>
 			<div class="col-auto">
 				<button type="submit" class="btn btn-primary mb-3">Rechercher</button>
@@ -52,6 +56,9 @@
 		</tr>
 
 	</table>
+
+	<div th:replace="fragment/footer::footer" />
+	
 </body>
 
 </html>

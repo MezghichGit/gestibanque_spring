@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 import com.sip.gestibanque.entities.User;
 
 @Repository
-public interface UserRepository extends CrudRepository<User, Integer>{
+public interface UserRepository extends CrudRepository<User, Integer> {
 	
-	List<User> findByNom(String nom);
-	List<User> findByPrenom(String prenom);
+//	@Query("FROM User u WHERE u.nom")
+	List<User> findByNomOrPrenom(String nom, String prenom);
 
 }

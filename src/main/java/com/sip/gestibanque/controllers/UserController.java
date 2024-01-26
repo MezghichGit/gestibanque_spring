@@ -66,11 +66,11 @@ public class UserController {
 	}
 	
 	@PostMapping("/search")
-	public String getFormSearchUser(Model model, @RequestParam(value = "nom") String nom) {
+	public String getFormSearchUser(Model model,
+			@RequestParam(value = "inputname", required = false) String inputname) {
 
-		List<User> users  = userRepository.findByNom(nom);
+		List<User> users  = userRepository.findByNomOrPrenom(inputname, inputname);
 		model.addAttribute("users", users);
-//		model.addAttribute("nom", nom);
 
 		return "user/listUser";
 //		return "redirect:list";

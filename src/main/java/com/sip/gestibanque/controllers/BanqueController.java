@@ -79,7 +79,6 @@ public class BanqueController {
 
 		List<Banque> banques = banqueRepository.findByNom(nom);
 		model.addAttribute("banques", banques);
-//		model.addAttribute("nom", nom);
 
 		return "banque/listBanque";
 //		return "redirect:list";

@@ -14,70 +14,75 @@ import com.sip.gestibanque.repositories.BanqueRepository;
 @Controller
 @RequestMapping("/banques")
 public class BanqueController {
-	
-	@Autowired  // iOC(inversion of control) = Injection de dépendances
+
+	@Autowired // IoC (Inversion of Control) = Injection de dépendances
 	BanqueRepository banqueRepository;
-	
-	
+
 	@GetMapping("/save")
-	public String getFormAddBanque(Model model)
-	{
-		//Banque banque = new Banque("abc","paris",12000);
+	public String getFormAddBanque(Model model) {
+		// Objet banque en dur
+//		Banque banque = new Banque("abc","paris",12000);
 		Banque banque = new Banque();
 		model.addAttribute("banque", banque);
+
 		return "banque/addBanque";
 	}
-	
-	
+
 	@PostMapping("/save")
-	//@ResponseBody
-	public String saveBanque(Banque banque)
-	{
-		banqueRepository.save(banque);  // save : insert
-		//return res.toString();
+//	@ResponseBody
+	public String saveBanque(Banque banque) {
+		banqueRepository.save(banque); // save : insert
+
+//		 return res.toString();
 		return "redirect:list";
 	}
-	
+
 	@RequestMapping("/list")
-	//@ResponseBody
-	public String getAllBanques(Model model)
-	{
-		List<Banque> banques = (List<Banque>) banqueRepository.findAll();  // select *
+//	 @ResponseBody
+	public String getAllBanques(Model model) {
+		List<Banque> banques = (List<Banque>) banqueRepository.findAll(); // select *
 		model.addAttribute("banques", banques);
-		//return banques.toString();
+
+//		 return banques.toString();
 		return "banque/listBanque";
 	}
-	
+
 	@GetMapping("/delete/{id}")
-	//@ResponseBody
-	public String deleteBanque(@PathVariable("id") int id)
-	{
-		banqueRepository.deleteById(id);  // delete
-		//List<Banque> banques = (List<Banque>) banqueRepository.findAll(); 
-		//return banques.toString();
+//	 @ResponseBody
+	public String deleteBanque(@PathVariable("id") int id) {
+		banqueRepository.deleteById(id); // delete
+//		 List<Banque> banques = (List<Banque>) banqueRepository.findAll();
+
+//		 return banques.toString();
 		return "redirect:../list";
 	}
-	
-	
+
 	@GetMapping("/update/{id}")
-	public String getFormUpdateBanque(@PathVariable("id") int id, Model model)
-	{
+	public String getFormUpdateBanque(@PathVariable("id") int id, Model model) {
 		Optional<Banque> opBanque = banqueRepository.findById(id);
-		Banque banque = opBanque.get(); //banque qui est remplis depuis la base
-		
+		Banque banque = opBanque.get(); // banque qui est remplie depuis la base
 		model.addAttribute("banque", banque);
-		
+
 		return "banque/updateBanque";
 	}
-	
-	
+
 	@PostMapping("/update")
-	//@ResponseBody
-	public String updateBanque(Banque banque)
-	{
-		banqueRepository.save(banque);  // save : insert
+//	 @ResponseBody
+	public String updateBanque(Banque banque) {
+		banqueRepository.save(banque); // save : insert
+
 		return "redirect:list";
 	}
-	
+
+	@PostMapping("/search")
+	public String getFormSearchBanque(Model model, @RequestParam(value = "nom") String nom) {
+
+		List<Banque> banques = banqueRepository.findByNom(nom);
+		model.addAttribute("banques", banques);
+//		model.addAttribute("nom", nom);
+
+		return "banque/listBanque";
+//		return "redirect:list";
+	}
 
 }

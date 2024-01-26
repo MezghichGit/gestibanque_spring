@@ -7,32 +7,52 @@
 </head>
 
 <body style="margin: 0.5%;">
-<h1 align="center">Les banque de GK, Cursus Java, Promo 2024</h1>
+	<h1 align="center">Les Banques</h1>
 
+	<br />
 
-Pour ajouter une nouvelle banque, cliquez ici : <a class="btn btn-primary" th:href="@{/banques/save}">Ajouter Banque</a>
-<br />
-<br />
-<h3 align="center" style="background-color: brown;">Liste des banques</h3>
+	<!-- <div th:replace="fragment/rscbox::rscbox" /> -->
+	<div class="container mt-3">
+		<form class="row" method="post" th:action="@{/banques/search}" th:object="${banques}">
+			<div class="col">
+				<label for="si" class="visually-hidden"></label>
+				<input type="text" class="form-control" id="si" th:name="nom"
+					placeholder="Saisissez le nom d'une' banque">
+			</div>
+			<div class="col-auto">
+				<button type="submit" class="btn btn-primary mb-3">Rechercher</button>
+			</div>
+		</form>
+	</div>
 
-<table border="4" align="center" class="table table-dark">
-	<tr>
-		<th>ID Banque</th>
-		<th>Nom Banque</th>
-		<th>Capital Banque</th>
-		<th>Adresse Banque</th>
-		<th>Supprimer</th>
-		<th>Modifier</th>
-	</tr>
-	<tr th:each="banque:${banques}">
-		<td th:text="${banque.id}"></td>
-		<td th:text="${banque.nom}"></td>
-		<td th:text="${banque.capital}"></td>
-		<td th:text="${banque.adresse}"></td>
-		<td><a th:href="@{/banques/delete/{id}(id=${banque.id})}" class="btn btn-danger">Supprimer</a></td>
-		<td><a th:href="@{/banques/update/{id}(id=${banque.id})}" class="btn btn-warning">Modifier</a></td>
-	</tr>
+	Pour ajouter une nouvelle banque, cliquez ici : <a class="btn btn-primary" th:href="@{/banques/save}">Nouveau
+		Banque</a>
+	<br />
+	<br />
+	<h3 align="center" style="background-color: rgb(0, 255, 128);">Liste des banques</h3>
 
-</table>
+	<table border="4" align="center" class="table table-dark">
+		<tr>
+			<th>ID Banque</th>
+			<th>Nom Banque</th>
+			<th>Capital Banque</th>
+			<th>Adresse Banque</th>
+			<th>Supprimer</th>
+			<th>Modifier</th>
+		</tr>
+		<tr th:each="banque:${banques}">
+			<td th:text="${banque.id}"></td>
+			<td th:text="${banque.nom}"></td>
+			<td th:text="${banque.capital}"></td>
+			<td th:text="${banque.adresse}"></td>
+			<td><a th:href="@{/banques/delete/{id}(id=${banque.id})}" class="btn btn-danger">Supprimer</a></td>
+			<td><a th:href="@{/banques/update/{id}(id=${banque.id})}" class="btn btn-warning">Modifier</a></td>
+		</tr>
+
+	</table>
+
+	<div th:replace="fragment/footer::footer" />
+
 </body>
+
 </html>

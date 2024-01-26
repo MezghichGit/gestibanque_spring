@@ -7,36 +7,53 @@
 </head>
 
 <body style="margin: 0.5%;">
-<h1 align="center">Les Utilisateurs</h1>
+	<h1 align="center">Les Utilisateurs</h1>
 
+	<br />
 
-Pour ajouter une nouveau utilisateur clique ici : <a class="btn btn-primary" th:href="@{/users/save}">Ajouter utilisateur</a>
-<br />
-<br />
-<h3 align="center" style="background-color: rgb(0, 255, 128);">Liste des banques</h3>
+	<!-- <div th:replace="fragment/rscbox::rscbox" /> -->
+	<div class="container mt-3">
+		<form class="row" method="post" th:action="@{/users/search}">
+			<div class="col">
+				<label for="si" class="visually-hidden"></label>
+				<input type="text" class="form-control" id="si" th:name="nom"
+					placeholder="Saisissez le nom ou le prénom d'un utilisateur">
+			</div>
+			<div class="col-auto">
+				<button type="submit" class="btn btn-primary mb-3">Rechercher</button>
+			</div>
+		</form>
+	</div>
 
-<table border="4" align="center" class="table table-dark">
-	<tr>
-		<th>ID Utilisateur</th>
-		<th>Nom</th>
-		<th>Prenom</th>
-		<th>Age</th>
-		<th>Email</th>
-		<th>Adresse</th>
-		<th>Telephone</th>
-	</tr>
-	<tr th:each="user:${users}">
-		<td th:text="${user.id}"></td>
-		<td th:text="${user.nom}"></td>
-		<td th:text="${user.prenom}"></td>
-		<td th:text="${user.age}"></td>
-		<td th:text="${user.email}"></td>
-		<td th:text="${user.adresse}"></td>
-		<td th:text="${user.telephone}"></td>
-		<td><a th:href="@{/users/delete/{id}(id=${user.id})}" class="btn btn-danger">Supprimer</a></td>
-		<td><a th:href="@{/users/update/{id}(id=${user.id})}" class="btn btn-warning">Modifier</a></td>
-	</tr>
+	Pour ajouter un nouveau utilisateur, cliquez ici : <a class="btn btn-primary" th:href="@{/users/save}">Nouveau
+		utilisateur</a>
+	<br />
+	<br />
+	<h3 align="center" style="background-color: rgb(0, 255, 128);">Liste des utilisateurs</h3>
 
-</table>
+	<table border="4" align="center" class="table table-dark">
+		<tr>
+			<th>ID</th>
+			<th>Nom</th>
+			<th>Prenom</th>
+			<th>Âge</th>
+			<th>Email</th>
+			<th>Adresse</th>
+			<th>Téléphone</th>
+		</tr>
+		<tr th:each="user:${users}">
+			<td th:text="${user.id}"></td>
+			<td th:text="${user.nom}"></td>
+			<td th:text="${user.prenom}"></td>
+			<td th:text="${user.age}"></td>
+			<td th:text="${user.email}"></td>
+			<td th:text="${user.adresse}"></td>
+			<td th:text="${user.telephone}"></td>
+			<td><a th:href="@{/users/delete/{id}(id=${user.id})}" class="btn btn-danger">Supprimer</a></td>
+			<td><a th:href="@{/users/update/{id}(id=${user.id})}" class="btn btn-warning">Modifier</a></td>
+		</tr>
+
+	</table>
 </body>
+
 </html>

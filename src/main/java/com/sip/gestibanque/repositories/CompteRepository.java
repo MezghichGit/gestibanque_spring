@@ -1,10 +1,15 @@
 package com.sip.gestibanque.repositories;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.List;
 
-import com.sip.gestibanque.entities.Banque;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
 import com.sip.gestibanque.entities.CompteBancaire;
 
+@Repository
 public interface CompteRepository extends CrudRepository<CompteBancaire, Integer> {
+
+	List<CompteBancaire> findByProprietaire(String proprietaire);
 
 }

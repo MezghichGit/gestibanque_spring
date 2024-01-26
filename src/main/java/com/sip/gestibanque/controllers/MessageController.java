@@ -15,65 +15,65 @@ import com.sip.gestibanque.repositories.MessageRepository;
 @Controller
 @RequestMapping("/messages")
 public class MessageController {
-	
-	@Autowired  // iOC(inversion of control) = Injection de dépendances
+
+	@Autowired
 	MessageRepository messageRepository;
-	
+
 	@RequestMapping("/save")
-	@ResponseBody
-	public String saveMessage()
-	{
-		// Objet message en dur
-		Message message =  new Message();
-		message.setSujet("Cursus Java");	
-		message.setDescription("Bonjour Mr Amine, plus de détails sur le cursus");
-		message.setDateMessage(LocalDate.now());
-		message.setEmailSender("anne@gmail.com");
-		
-		Message savedMessage = messageRepository.save(message);  // save : insert
-		
-		return savedMessage.toString();
+	public String getFormAddMessage(Model model) {
+		Message message = new Message();
+		model.addAttribute("message", message);
+
+		return "message/addMessage";
 	}
-	
+
+	@PostMapping("/save")
+	public String saveMessage(Message message) {
+		messageRepository.save(message); // save : insert
+
+		return "redirect:list";
+	}
+
 	@RequestMapping("/list")
-//	@ResponseBody
-	public String getAllMessages(Model model)
-	{
-		List<Message> messages = (List<Message>) messageRepository.findAll();  // select *
+	public String getAllMessages(Model model) {
+		List<Message> messages = (List<Message>) messageRepository.findAll(); // select *
 		model.addAttribute("messages", messages);
-		
-//		return messages.toString();
+
 		return "message/listMessage";
 	}
-	
+
 	@RequestMapping("/delete/{id}")
-//	@ResponseBody
-	public String deleteMessage(@PathVariable("id") int id)
-	{
-		messageRepository.deleteById(id);  // delete
-		
+	public String deleteMessage(@PathVariable("id") int id) {
+		messageRepository.deleteById(id); // delete
+
 		return "redirect:../list";
 	}
-	
+
 	@GetMapping("/update/{id}")
-	public String getFormUpdateMessage(@PathVariable("id") int id, Model model)
-	{
+	public String getFormUpdateMessage(@PathVariable("id") int id, Model model) {
 		Optional<Message> opMessage = messageRepository.findById(id);
-		Message message = opMessage.get(); //message qui est remplis depuis la base
-		
+		Message message = opMessage.get(); // message qui est rempli depuis la base
 		model.addAttribute("message", message);
-		
-//		return messages.toString();
+
 		return "message/updateMessage";
 	}
-	
+
 	@PostMapping("/update")
-	//@ResponseBody
-	public String updateMessage(Message message)
-	{
-		messageRepository.save(message);  // save : insert
-		
+	public String updateMessage(Message message) {
+		messageRepository.save(message); // save : insert
+
 		return "redirect:list";
+	}
+	
+	@PostMapping("/search")
+	public String getFormSearchMessage(Model model, @RequestParam(value = "dateMessage") LocalDate dateMessage) {
+
+		List<Message> messages = messageRepository.findByDateMessage(dateMessage);
+		model.addAttribute("messages", messages);
+//		model.addAttribute("dateMessage", dateMessage);
+
+		return "message/listMessage";
+//		return "redirect:list";
 	}
 
 }

@@ -2,10 +2,10 @@ package com.sip.gestibanque.entities;
 
 import java.time.LocalDate;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import jakarta.persistence.*;
 
 @Entity
 public class CompteBancaire {
@@ -17,7 +17,7 @@ public class CompteBancaire {
 	private LocalDate dateCreation;
 	private String typeCompte; // Epargne | Courant
 	private double solde;
-	private int idBanque;
+//	private int idBanque;
 
 	public int getId() {
 		return id;
@@ -59,33 +59,47 @@ public class CompteBancaire {
 		this.solde = solde;
 	}
 
-	public int getIdBanque() {
-		return idBanque;
+//	public int getIdBanque() {
+//		return idBanque;
+//	}
+//
+//	public void setIdBanque(int idBanque) {
+//		this.idBanque = idBanque;
+//	}
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "id_banque", nullable = false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private Banque banque;
+
+	public Banque getBanque() {
+		return banque;
 	}
 
-	public void setIdBanque(int idBanque) {
-		this.idBanque = idBanque;
-	}
-
-	@Override
-	public String toString() {
-		return "CompteBancaire [id=" + id + ", proprietaire=" + proprietaire + ", dateCreation=" + dateCreation
-				+ ", typeCompte=" + typeCompte + ", solde=" + solde + ", idBanque=" + idBanque + "]";
+	public void setBanque(Banque banque) {
+		this.banque = banque;
 	}
 
 	public CompteBancaire(int id, String proprietaire, LocalDate dateCreation, String typeCompte, double solde,
-			int idBanque) {
+			Banque banque) {
 		super();
 		this.id = id;
 		this.proprietaire = proprietaire;
 		this.dateCreation = dateCreation;
 		this.typeCompte = typeCompte;
 		this.solde = solde;
-		this.idBanque = idBanque;
+		this.banque = banque;
 	}
 
 	public CompteBancaire() {
 
 	}
+
+	@Override
+	public String toString() {
+		return "CompteBancaire [id=" + id + ", proprietaire=" + proprietaire + ", dateCreation=" + dateCreation
+				+ ", typeCompte=" + typeCompte + ", solde=" + solde + ", banque=" + banque + "]";
+	}
+
 
 }

@@ -8,19 +8,31 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import com.sip.gestibanque.entities.Banque;
 import com.sip.gestibanque.entities.CompteBancaire;
+import com.sip.gestibanque.repositories.BanqueRepository;
 import com.sip.gestibanque.repositories.CompteRepository;
 
 @Controller
 @RequestMapping("/comptes")
 public class CompteController {
-	@Autowired
-	CompteRepository compteRepository;
+
+	private final CompteRepository compteRepository;
+	private final BanqueRepository banqueRepository;
+
+//	@Autowired
+	public CompteController(CompteRepository compteRepository, BanqueRepository banqueRepository) {
+		this.compteRepository = compteRepository;
+		this.banqueRepository = banqueRepository;
+	}
 
 	@RequestMapping("/save")
 	public String getFormAddCompte(Model model) {
 		CompteBancaire cb = new CompteBancaire();
 		model.addAttribute("cb", cb);
+
+		List<Banque> banques = (List<Banque>) this.banqueRepository.findAll();
+		model.addAttribute("banques", banques);
 
 		return "compte/addCompte";
 	}
@@ -50,8 +62,12 @@ public class CompteController {
 	@GetMapping("/update/{id}")
 	public String getFormUpdateCompte(@PathVariable("id") int id, Model model) {
 		Optional<CompteBancaire> opCompte = compteRepository.findById(id);
-		CompteBancaire cb = opCompte.get(); // compte qui est rempli depuis la base
+//		CompteBancaire cb = opCompte.get(); // compte qui est rempli depuis la base
+		CompteBancaire cb = opCompte.orElseThrow(); // use orElseThrow to handle a possible absence
 		model.addAttribute("compte", cb);
+
+		List<Banque> banques = (List<Banque>) this.banqueRepository.findAll();
+		model.addAttribute("banques", banques);
 
 		return "compte/updateCompte";
 	}

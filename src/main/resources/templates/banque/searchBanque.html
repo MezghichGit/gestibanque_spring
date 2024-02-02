@@ -1,21 +1,29 @@
 <h1>Résultats de recherche</h1>
 
 <table border="4" align="center" class="table table-dark">
-	<tr>
-		<th>ID Banque</th>
-		<th>Nom Banque</th>
-		<th>Capital Banque</th>
-		<th>Adresse Banque</th>
-		<th>Supprimer</th>
-		<th>Modifier</th>
-	</tr>
-	<tr th:each="banque:${banques}">
-		<td th:text="${banque.id}"></td>
-		<td th:text="${banque.nom}"></td>
-		<td th:text="${banque.capital}"></td>
-		<td th:text="${banque.adresse}"></td>
-		<td><a th:href="@{/banques/delete/{id}(id=${banque.id})}" class="btn btn-danger">Supprimer</a></td>
-		<td><a th:href="@{/banques/update/{id}(id=${banque.id})}" class="btn btn-warning">Modifier</a></td>
-	</tr>
+  <tr>
+    <th>ID Banque</th>
+    <th>Nom</th>
+    <th>Capital</th>
+    <th>Adresse</th>
+    <th>Comptes</th>
+    <th>Supprimer</th>
+    <th>Modifier</th>
+  </tr>
+  <tr th:each="banque:${banques}">
+    <td th:text="${banque.id}"></td>
+    <td th:text="${banque.nom}"></td>
+    <td th:text="${banque.capital}"></td>
+    <td th:text="${banque.adresse}"></td>
+    <td>
+      <a th:href="@{/banques/comptesBancaires/{id}(id=${banque.id})}" class="btn btn-info">Comptes Banque</a>
+    </td>
+    <td>
+      <a th:href="@{/banques/delete/{id}(id=${banque.id})}" class="btn btn-danger">Supprimer</a>
+    </td>
+    <td>
+      <a th:href="@{/banques/update/{id}(id=${banque.id})}" class="btn btn-warning">Modifier</a>
+    </td>
+  </tr>
 
 </table>

@@ -12,7 +12,10 @@
   <br />
   <br />
 
-  <h1 align="center">Les Comptes Bancaires</h1>
+  <h1 align="center">
+    Liste des comptes bancaires de la banque :
+    <span th:text="${banque.nom}"></span>
+  </h1>
   <br />
 
   <!-- <div th:replace="fragment/rscbox::rscbox" /> -->
@@ -46,7 +49,7 @@
       <th>Supprimer</th>
       <th>Modifier</th>
     </tr>
-    <tr th:each="compte:${comptes}">
+    <tr th:each="compte:${comptesBanque}">
       <td th:text="${compte.id}"></td>
       <td th:text="${compte.proprietaire}"></td>
       <td th:text="${compte.dateCreation}"></td>

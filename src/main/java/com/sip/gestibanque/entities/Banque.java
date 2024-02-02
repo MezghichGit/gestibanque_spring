@@ -1,9 +1,8 @@
 package com.sip.gestibanque.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import java.util.List;
+
+import jakarta.persistence.*;
 
 @Entity // On veut que Hibernate nous crée une table
 public class Banque {
@@ -47,21 +46,35 @@ public class Banque {
 		this.capital = capital;
 	}
 
-	@Override
-	public String toString() {
-		return "Banque [id=" + id + ", nom=" + nom + ", adresse=" + adresse + ", capital=" + capital + "]";
-	}
-
-	public Banque(int id, String nom, String adresse, double capital) {
+	public Banque(int id, String nom, String adresse, double capital, List<CompteBancaire> comptesBancaires) {
 		super();
 		this.id = id;
 		this.nom = nom;
 		this.adresse = adresse;
 		this.capital = capital;
+		this.comptesBancaires = comptesBancaires;
 	}
 
 	public Banque() {
 
 	}
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "banque")
+	private List<CompteBancaire> comptesBancaires;
+
+	public List<CompteBancaire> getComptesBancaires() {
+		return comptesBancaires;
+	}
+
+	public void setComptesBancaires(List<CompteBancaire> comptesBancaires) {
+		this.comptesBancaires = comptesBancaires;
+	}
+
+	@Override
+	public String toString() {
+		return "Banque [id=" + id + ", nom=" + nom + ", adresse=" + adresse + ", capital=" + capital
+				+ ", comptesBancaires=" + comptesBancaires + "]";
+	}
+	
 
 }

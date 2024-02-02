@@ -1,25 +1,29 @@
 <h1>Résultats de recherche</h1>
 
 <table border="4" align="center" class="table table-dark">
-	<tr>
-		<th>ID</th>
-		<th>Nom</th>
-		<th>Prenom</th>
-		<th>Âge</th>
-		<th>Email</th>
-		<th>Adresse</th>
-		<th>Téléphone</th>
-	</tr>
-	<tr th:each="user:${users}">
-		<td th:text="${user.id}"></td>
-		<td th:text="${user.nom}"></td>
-		<td th:text="${user.prenom}"></td>
-		<td th:text="${user.age}"></td>
-		<td th:text="${user.email}"></td>
-		<td th:text="${user.adresse}"></td>
-		<td th:text="${user.telephone}"></td>
-		<td><a th:href="@{/users/delete/{id}(id=${user.id})}" class="btn btn-danger">Supprimer</a></td>
-		<td><a th:href="@{/users/update/{id}(id=${user.id})}" class="btn btn-warning">Modifier</a></td>
-	</tr>
+  <tr>
+    <th>ID</th>
+    <th>Nom</th>
+    <th>Prenom</th>
+    <th>Âge</th>
+    <th>Email</th>
+    <th>Adresse</th>
+    <th>Téléphone</th>
+  </tr>
+  <tr th:each="user:${users}">
+    <td th:text="${user.id}"></td>
+    <td th:text="${user.nom}"></td>
+    <td th:text="${user.prenom}"></td>
+    <td th:text="${user.age}"></td>
+    <td th:text="${user.email}"></td>
+    <td th:text="${user.adresse}"></td>
+    <td th:text="${user.telephone}"></td>
+    <td>
+      <a th:href="@{/users/delete/{id}(id=${user.id})}" class="btn btn-danger">Supprimer</a>
+    </td>
+    <td>
+      <a th:href="@{/users/update/{id}(id=${user.id})}" class="btn btn-warning">Modifier</a>
+    </td>
+  </tr>
 
 </table>

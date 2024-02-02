@@ -1,23 +1,27 @@
 <h1>Résultats de recherche</h1>
 
 <table border="4" align="center" class="table table-dark">
-	<tr>
-		<th>ID compte</th>
-		<th>Nom Proprietaire</th>
-		<th>Date creation</th>
-		<th>Compte type</th>
-		<th>ID Banque</th>
-		<th>Supprimer</th>
-		<th>Modifier</th>
-	</tr>
-	<tr th:each="compte:${comptes}">
-		<td th:text="${compte.id}"></td>
-		<td th:text="${compte.proprietaire}"></td>
-		<td th:text="${compte.dateCreation}"></td>
-		<td th:text="${compte.typeCompte}"></td>
-		<td th:text="${compte.idBanque}"></td>
-		<td><a th:href="@{/comptes/delete/{id}(id=${compte.id})}" class="btn btn-danger">Supprimer</a></td>
-		<td><a th:href="@{/comptes/update/{id}(id=${compte.id})}" class="btn btn-warning">Modifier</a></td>
-	</tr>
+  <tr>
+    <th>ID compte</th>
+    <th>Nom Proprietaire</th>
+    <th>Date creation</th>
+    <th>Compte type</th>
+    <th>ID Banque</th>
+    <th>Supprimer</th>
+    <th>Modifier</th>
+  </tr>
+  <tr th:each="compte:${comptes}">
+    <td th:text="${compte.id}"></td>
+    <td th:text="${compte.proprietaire}"></td>
+    <td th:text="${compte.dateCreation}"></td>
+    <td th:text="${compte.typeCompte}"></td>
+    <td th:text="${compte.idBanque}"></td>
+    <td>
+      <a th:href="@{/comptes/delete/{id}(id=${compte.id})}" class="btn btn-danger">Supprimer</a>
+    </td>
+    <td>
+      <a th:href="@{/comptes/update/{id}(id=${compte.id})}" class="btn btn-warning">Modifier</a>
+    </td>
+  </tr>
 
 </table>

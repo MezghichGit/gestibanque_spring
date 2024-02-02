@@ -1,23 +1,27 @@
 <h1>Résultats de recherche</h1>
 
 <table border="4" align="center" class="table table-dark">
-	<tr>
-		<th>ID</th>
-		<th>Sujet</th>
-		<th>Description</th>
-		<th>Date</th>
-		<th>Sender</th>
-		<th>Supprimer</th>
-		<th>Modifier</th>
-	</tr>
-	<tr th:each="message:${messages}">
-		<td th:text="${message.id}"></td>
-		<td th:text="${message.sujet}"></td>
-		<td th:text="${message.description}"></td>
-		<td th:text="${message.dateMessage}"></td>
-		<td th:text="${message.emailSender}"></td>
-		<td><a th:href="@{/messages/delete/{id}(id=${message.id})}" class="btn btn-danger">Supprimer</a></td>
-		<td><a th:href="@{/messages/update/{id}(id=${message.id})}" class="btn btn-warning">Modifier</a></td>
-	</tr>
+  <tr>
+    <th>ID</th>
+    <th>Sujet</th>
+    <th>Description</th>
+    <th>Date</th>
+    <th>Sender</th>
+    <th>Supprimer</th>
+    <th>Modifier</th>
+  </tr>
+  <tr th:each="message:${messages}">
+    <td th:text="${message.id}"></td>
+    <td th:text="${message.sujet}"></td>
+    <td th:text="${message.description}"></td>
+    <td th:text="${message.dateMessage}"></td>
+    <td th:text="${message.emailSender}"></td>
+    <td>
+      <a th:href="@{/messages/delete/{id}(id=${message.id})}" class="btn btn-danger">Supprimer</a>
+    </td>
+    <td>
+      <a th:href="@{/messages/update/{id}(id=${message.id})}" class="btn btn-warning">Modifier</a>
+    </td>
+  </tr>
 
 </table>

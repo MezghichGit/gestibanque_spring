@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.sip.gestibanque.entities.Banque;
+import com.sip.gestibanque.entities.CompteBancaire;
 import com.sip.gestibanque.repositories.BanqueRepository;
 
 @Controller
@@ -75,13 +76,26 @@ public class BanqueController {
 	}
 
 	@PostMapping("/search")
+//	@GetMapping("/search")
 	public String getFormSearchBanque(Model model, @RequestParam(value = "nom") String nom) {
-
 		List<Banque> banques = banqueRepository.findByNom(nom);
 		model.addAttribute("banques", banques);
 
 		return "banque/listBanque";
 //		return "redirect:list";
+	}
+
+	@GetMapping("/comptes/{id}")
+	public String comptesBanque(Model model, @PathVariable("id") int id) {
+		Optional<Banque> opBanque = banqueRepository.findById(id);
+//		Banque banque = opBanque.get();
+		Banque banque = opBanque.orElseThrow(); // use orElseThrow to handle a possible absence
+		model.addAttribute("banque", banque);
+		
+		List<CompteBancaire> cbs = banque.getComptesBancaires();
+		model.addAttribute("comptesBanque", cbs);
+		
+		return "banque/comptesBanque";
 	}
 
 }

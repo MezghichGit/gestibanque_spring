@@ -68,6 +68,9 @@ public class CompteController {
 
 		List<Banque> banques = (List<Banque>) this.banqueRepository.findAll();
 		model.addAttribute("banques", banques);
+		
+		// Add an attribute to indicate the selected banque.nom
+	    model.addAttribute("selectedBanqueNom", cb.getBanque().getNom());
 
 		return "compte/updateCompte";
 	}

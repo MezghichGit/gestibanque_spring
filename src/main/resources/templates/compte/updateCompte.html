@@ -28,22 +28,22 @@
       <input id="pp" type="text" th:field="*{proprietaire}" class="form-control" required />
       <br />
       <label for="dc">Date de création du compte</label>
-      <input id="dc" type="date" th:field="*{dateCreation}" class="form-control" required />
+      <input type="date" class="form-control" name="dateCreation" th:value="*{{dateCreation}}" />
+      <!-- <input id="dc" type="date" th:field="*{dateCreation}" class="form-control" required /> -->
       <br />
       <label for="tc">Type du compte</label>
       <select id="tc" th:field="*{typeCompte}" class="form-control" required>
-        <option value="">--</option>
-        <option value="Épargne">Épargne</option>
-        <option value="Courant">Courant</option>
+        <option value="Épargne" th:selected="${typeCompte == 'Épargne'}">Épargne</option>
+        <option value="Courant" th:selected="${typeCompte == 'Courant'}">Courant</option>
       </select>
       <br />
       <label for="sc">Solde du compte</label>
       <input id="sc" type="number" th:field="*{solde}" class="form-control" required />
       <br />
       <label for="bn">Banque du compte</label>
-      <select id='bn' th:field="*{banque}" class="form-control" required>
-        <option value="">--</option>
-        <option th:each="banque:${banques}" th:text="${banque.nom}" th:value="${banque.id}"></option>
+      <select id='bn' th:field="*{banque.nom}" class="form-control" required>
+        <option th:each="opBanque:${banques}" th:text="${opBanque.nom}" th:value="${opBanque.id}"
+          th:selected="${opBanque.nom == selectedBanqueNom}">Coucou</option>
       </select>
       <br />
 

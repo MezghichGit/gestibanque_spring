@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.*;
 
@@ -14,6 +15,7 @@ public class CompteBancaire {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String proprietaire;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate dateCreation;
 	private String typeCompte; // Epargne | Courant
 	private double solde;

@@ -29,7 +29,6 @@
       <br />
       <label for="dc">Date de création du compte</label>
       <input type="date" class="form-control" name="dateCreation" th:value="*{{dateCreation}}" />
-      <!-- <input id="dc" type="date" th:field="*{dateCreation}" class="form-control" required /> -->
       <br />
       <label for="tc">Type du compte</label>
       <select id="tc" th:field="*{typeCompte}" class="form-control" required>
@@ -41,9 +40,9 @@
       <input id="sc" type="number" th:field="*{solde}" class="form-control" required />
       <br />
       <label for="bn">Banque du compte</label>
-      <select id='bn' th:field="*{banque.nom}" class="form-control" required>
+      <select id='bn' th:field="*{banque.id}" class="form-control" required>
         <option th:each="opBanque:${banques}" th:text="${opBanque.nom}" th:value="${opBanque.id}"
-          th:selected="${opBanque.nom == selectedBanqueNom}">Coucou</option>
+          th:selected="${opBanque == banque}"></option>
       </select>
       <br />
 

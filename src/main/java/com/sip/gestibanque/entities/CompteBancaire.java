@@ -15,7 +15,7 @@ public class CompteBancaire {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String proprietaire;
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateCreation;
 	private String typeCompte; // Epargne | Courant
 	private double solde;
@@ -68,7 +68,7 @@ public class CompteBancaire {
 //	public void setIdBanque(int idBanque) {
 //		this.idBanque = idBanque;
 //	}
-	
+
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "id_banque", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
@@ -80,6 +80,12 @@ public class CompteBancaire {
 
 	public void setBanque(Banque banque) {
 		this.banque = banque;
+	}
+
+	@Override
+	public String toString() {
+		return "CompteBancaire [id=" + id + ", proprietaire=" + proprietaire + ", dateCreation=" + dateCreation
+				+ ", typeCompte=" + typeCompte + ", solde=" + solde + ", banque=" + banque + "]";
 	}
 
 	public CompteBancaire(int id, String proprietaire, LocalDate dateCreation, String typeCompte, double solde,
@@ -96,12 +102,5 @@ public class CompteBancaire {
 	public CompteBancaire() {
 
 	}
-
-	@Override
-	public String toString() {
-		return "CompteBancaire [id=" + id + ", proprietaire=" + proprietaire + ", dateCreation=" + dateCreation
-				+ ", typeCompte=" + typeCompte + ", solde=" + solde + ", banque=" + banque + "]";
-	}
-
 
 }

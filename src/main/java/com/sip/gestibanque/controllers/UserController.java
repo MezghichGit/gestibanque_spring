@@ -10,13 +10,16 @@ import org.springframework.web.bind.annotation.*;
 
 import com.sip.gestibanque.entities.User;
 import com.sip.gestibanque.repositories.UserRepository;
+import com.sip.gestibanque.services.UserService;
 
 @Controller
 @RequestMapping("/users")
 public class UserController {
 
 	@Autowired
-	UserRepository userRepository;
+	private UserRepository userRepository;
+	@Autowired
+	private UserService userService;
 
 	@GetMapping("/save")
 	public String getFormAddUser(Model model) {
@@ -28,7 +31,8 @@ public class UserController {
 
 	@PostMapping("/save")
 	public String saveUser(User user) {
-		userRepository.save(user);
+//		userRepository.save(user);
+		this.userService.saveUser(user);
 
 		return "redirect:list";
 	}
@@ -64,12 +68,12 @@ public class UserController {
 
 		return "redirect:list";
 	}
-	
+
 	@PostMapping("/search")
 	public String getFormSearchUser(Model model,
 			@RequestParam(value = "inputname", required = false) String inputname) {
 
-		List<User> users  = userRepository.findByNomOrPrenom(inputname, inputname);
+		List<User> users = userRepository.findByNomOrPrenom(inputname, inputname);
 		model.addAttribute("users", users);
 
 		return "user/listUser";

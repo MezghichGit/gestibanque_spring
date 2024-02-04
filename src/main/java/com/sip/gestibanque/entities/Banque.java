@@ -46,19 +46,6 @@ public class Banque {
 		this.capital = capital;
 	}
 
-	public Banque(int id, String nom, String adresse, double capital, List<CompteBancaire> comptesBancaires) {
-		super();
-		this.id = id;
-		this.nom = nom;
-		this.adresse = adresse;
-		this.capital = capital;
-		this.comptesBancaires = comptesBancaires;
-	}
-
-	public Banque() {
-
-	}
-
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "banque")
 	private List<CompteBancaire> comptesBancaires;
 
@@ -75,6 +62,18 @@ public class Banque {
 		return "Banque [id=" + id + ", nom=" + nom + ", adresse=" + adresse + ", capital=" + capital
 				+ ", comptesBancaires=" + comptesBancaires + "]";
 	}
-	
+
+	public Banque(int id, String nom, String adresse, double capital, List<CompteBancaire> comptesBancaires) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.adresse = adresse;
+		this.capital = capital;
+		this.comptesBancaires = comptesBancaires;
+	}
+
+	public Banque() {
+
+	}
 
 }

@@ -1,9 +1,8 @@
 package com.sip.gestibanque.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import java.util.Set;
+
+import jakarta.persistence.*;
 
 @Entity
 public class User {
@@ -74,25 +73,16 @@ public class User {
 		this.telephone = telephone;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", age=" + age + ", email=" + email
-				+ ", adresse=" + adresse + ", telephone=" + telephone + "]";
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "role_user", joinColumns = @JoinColumn(name = "id_user"), inverseJoinColumns = @JoinColumn(name = "id_role"))
+	private Set<Role> roles;
+
+	public Set<Role> getRoles() {
+		return roles;
 	}
 
-	public User(int id, String nom, String prenom, int age, String email, String adresse, String telephone) {
-		super();
-		this.id = id;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.age = age;
-		this.email = email;
-		this.adresse = adresse;
-		this.telephone = telephone;
-	}
-
-	public User() {
-
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
 }

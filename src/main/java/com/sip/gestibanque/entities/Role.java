@@ -2,6 +2,7 @@ package com.sip.gestibanque.entities;
 
 import jakarta.persistence.*;
 
+@Entity
 public class Role {
 
 	@Id
@@ -33,6 +34,11 @@ public class Role {
 	public Role(int id, String libelle) {
 		super();
 		this.id = id;
+		this.libelle = libelle;
+	}
+
+	public Role(String libelle) {
+		super();
 		this.libelle = libelle;
 	}
 

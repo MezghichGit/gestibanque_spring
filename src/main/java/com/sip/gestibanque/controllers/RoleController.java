@@ -17,8 +17,8 @@ public class RoleController {
 	@RequestMapping("/save")
 	@ResponseBody
 	public String addRoles() {
-		// Role role = roleRepository.save(new Role("SUPERADMIN"));
-		// Role role = roleRepository.save(new Role("ADMIN"));
+//		 Role role = roleRepository.save(new Role("SUPERADMIN"));
+//		 Role role = roleRepository.save(new Role("ADMIN"));
 		Role role = roleRepository.save(new Role("CLIENT"));
 		
 		return role.toString();

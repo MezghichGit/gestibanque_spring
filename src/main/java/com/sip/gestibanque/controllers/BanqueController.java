@@ -91,10 +91,10 @@ public class BanqueController {
 //		Banque banque = opBanque.get();
 		Banque banque = opBanque.orElseThrow(); // use orElseThrow to handle a possible absence
 		model.addAttribute("banque", banque);
-		
+
 		List<CompteBancaire> cbs = banque.getComptesBancaires();
 		model.addAttribute("comptesBanque", cbs);
-		
+
 		return "banque/comptesBanque";
 	}
 

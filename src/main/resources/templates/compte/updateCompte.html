@@ -2,8 +2,10 @@
 
 <head>
 <title>GESTI-BANQUE</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-  integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+<link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+  integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+  crossorigin="anonymous">
 </head>
 
 <body style="margin: 0.5%;">
@@ -16,33 +18,46 @@
   <br />
 
   Pour consulter la liste des comptes bancaires :
-  <a class="btn btn-primary" th:href="@{/comptes/list}">Liste Comptes</a>
+  <a class="btn btn-primary" th:href="@{/comptes/list}">Liste
+    Comptes</a>
   <br />
   <br />
-  <h3 align="center" style="background-color: rgb(0, 255, 128);">Modifier un compte bancaire</h3>
+  <h3 align="center" style="background-color: rgb(0, 255, 128);">Modifier
+    un compte bancaire</h3>
 
   <div style="width: 50%; margin-left: 20%;">
-    <form method="post" th:action="@{/comptes/save}" th:object="${compte}">
+    <form method="post" th:action="@{/comptes/save}"
+      th:object="${compte}">
       <input type="hidden" th:field="*{id}" />
+      <input type="hidden" th:field="*{dateCreation}" />
       <label for="pp">Propriétaire du compte</label>
-      <input id="pp" type="text" th:field="*{proprietaire}" class="form-control" required />
+      <input id="pp" type="text" th:field="*{proprietaire}"
+        class="form-control" required />
       <br />
-      <label for="dc">Date de création du compte</label>
-      <input type="date" class="form-control" name="dateCreation" th:value="*{{dateCreation}}" />
-      <br />
+      <!-- <label for="dc">Date de création du compte</label>
+      <input id="dc" type="date" name="dateCreation"
+        th:value="*{{dateCreation}}" class="form-control" required />
+      <br /> -->
       <label for="tc">Type du compte</label>
-      <select id="tc" th:field="*{typeCompte}" class="form-control" required>
-        <option value="Épargne" th:selected="${typeCompte == 'Épargne'}">Épargne</option>
-        <option value="Courant" th:selected="${typeCompte == 'Courant'}">Courant</option>
+      <select id="tc" th:field="*{typeCompte}" class="form-control"
+        required>
+        <option
+          th:each="opTypeCompte:${T(com.sip.gestibanque.entities.TypeCompte).values()}"
+          th:text="${opTypeCompte}" th:value="${opTypeCompte}"
+          th:selected="${opTypeCompte == typeCompte}"></option>
+        <!-- <option value="Épargne" th:selected="${typeCompte == 'Épargne'}">Épargne</option>
+        <option value="Courant" th:selected="${typeCompte == 'Courant'}">Courant</option> -->
       </select>
       <br />
       <label for="sc">Solde du compte</label>
-      <input id="sc" type="number" th:field="*{solde}" class="form-control" required />
+      <input id="sc" type="number" th:field="*{solde}"
+        class="form-control" required />
       <br />
       <label for="bn">Banque du compte</label>
-      <select id='bn' th:field="*{banque.id}" class="form-control" required>
-        <option th:each="opBanque:${banques}" th:text="${opBanque.nom}" th:value="${opBanque.id}"
-          th:selected="${opBanque == banque}"></option>
+      <select id='bn' th:field="*{banque.id}" class="form-control"
+        required>
+        <option th:each="opBanque:${banques}" th:text="${opBanque.nom}"
+          th:value="${opBanque.id}" th:selected="${opBanque == banque}"></option>
       </select>
       <br />
 

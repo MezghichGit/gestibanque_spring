@@ -74,7 +74,7 @@ public class User {
 	}
 
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "role_user", joinColumns = @JoinColumn(name = "id_user"), inverseJoinColumns = @JoinColumn(name = "id_role"))
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "id_user"), inverseJoinColumns = @JoinColumn(name = "id_role"))
 	private Set<Role> roles;
 
 	public Set<Role> getRoles() {
@@ -83,6 +83,29 @@ public class User {
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", age=" + age + ", email=" + email
+				+ ", adresse=" + adresse + ", telephone=" + telephone + ", roles=" + roles + "]";
+	}
+
+	public User(int id, String nom, String prenom, int age, String email, String adresse, String telephone,
+			Set<Role> roles) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.age = age;
+		this.email = email;
+		this.adresse = adresse;
+		this.telephone = telephone;
+		this.roles = roles;
+	}
+
+	public User() {
+
 	}
 
 }
